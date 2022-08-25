@@ -41,7 +41,10 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Orders
 - id `SERIAL [PRIMARY KEY]`
-- id of each product in the order `INTEGER [REFERENCES product(id)]`
-- user_id `INTEGER [REFERENCES user(id)]`
-- quantity of each product in the order `INTEGER [DEFAULT 1]`
+- user_id `INTEGER [REFERENCES users(id)]`
 - status of order (active or complete) `VARCHAR(100) [CHECK (status IN ('active', 'complete'))]`
+- 
+#### Order Products
+- id of the order `INTEGER [REFERENCES orders(id)]`
+- id of product in the order `INTEGER [REFERENCES products(id)]`
+- quantity of each product in the order `INTEGER [DEFAULT 1]`
