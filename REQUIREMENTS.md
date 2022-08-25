@@ -10,7 +10,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Create (token required): `POST '/api/products/'`
 - Delete: `DELETE '/api/products/:id`
 - [OPTIONAL] Top 5 most popular products
-- [OPTIONAL] Products by category: `GET '/api/products/cat/:category'`
+- [OPTIONAL] Products by category: `GET '/api/products/category/:category'`
 
 #### Users
 - Index (token required): `GET '/api/users/' (token)`
@@ -22,9 +22,9 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Index (token required): `GET '/api/orders/:user_id'`
 - Current Order by user (token required): `GET '/api/orders/current/:user_id'`
 - Active Orders by user (token required): `GET '/api/orders/active/:user_id'`
+- [OPTIONAL] Completed Orders by user (token required): `GET '/api/orders/completed/:user_id'`
 - Update order's status (token required): `PATCH '/api/orders?status=<status>&orderId=<order id>`
 - Delete (token required): `DELETE '/api/orders/:id`
-- [OPTIONAL] Completed Orders by user (token required): `GET '/api/orders/completed/:user_id'`
 
 ## Data Shapes
 #### Product
