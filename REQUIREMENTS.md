@@ -13,8 +13,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 - [OPTIONAL] Products by category: `GET '/api/products/category/:category'`
 
 #### Users
-- Index (token required): `GET '/api/users/' (token)`
-- Show (token required): `GET '/api/users/:id' (token)`
+- Index (token required): `GET '/api/users/'`
+- Show (token required): `GET '/api/users/:id'`
 - Create (token required): `POST '/api/users/'`
 - Delete (token required): `DELETE '/api/users/:id'`
 
