@@ -2,13 +2,13 @@ import bcrypt from 'bcrypt';
 import database from '../configs/db.config';
 import generateToken from '../utils/generateToken';
 
-import { User as IUser, ReturnedUser, UserWithToken } from '../types/User.interface';
+import { User as IUser } from '../types/User.interface';
 
 const { BCRYPT_SECRET, BCRYPT_SALT } = process.env;
 
 export default class User {
   // get all users
-  async getUsers(): Promise<ReturnedUser[]> {
+  async getUsers(): Promise<IUser[]> {
     try {
       const connection = await database.connect();
       const sql: string = `SELECT * FROM users`;
@@ -22,7 +22,7 @@ export default class User {
   }
 
   // get user by id
-  async getUserById(userId: number): Promise<ReturnedUser> {
+  async getUserById(userId: number): Promise<IUser> {
     try {
       const connection = await database.connect();
       const sql: string = `SELECT * FROM users WHERE id = $1`;
@@ -36,7 +36,7 @@ export default class User {
   }
 
   // create a new user
-  async createUser(user: IUser): Promise<UserWithToken> {
+  async createUser(user: IUser): Promise<IUser> {
     try {
       const { firstname, lastname, password } = user;
 
@@ -58,7 +58,7 @@ export default class User {
   }
 
   // delete a user
-  async deleteUser(id: number): Promise<ReturnedUser> {
+  async deleteUser(id: number): Promise<IUser> {
     try {
       const sql: string = `DELETE FROM users WHERE id=$1 RETURNING *`;
       const connection = await database.connect();

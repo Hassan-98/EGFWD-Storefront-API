@@ -1,10 +1,10 @@
 import database from '../configs/db.config';
 
-import { Product as IProduct, ReturnedProduct } from '../types/Product.interface';
+import { Product as IProduct } from '../types/Product.interface';
 
 export default class Product {
   // Get all products
-  async getProducts(): Promise<ReturnedProduct[]> {
+  async getProducts(): Promise<IProduct[]> {
     try {
       const connection = await database.connect();
       const sql = `SELECT * FROM products`;
@@ -18,7 +18,7 @@ export default class Product {
   }
 
   // Get product by id
-  async getProductById(productId: number): Promise<ReturnedProduct> {
+  async getProductById(productId: number): Promise<IProduct> {
     try {
       const connection = await database.connect();
       const sql = `SELECT * FROM products WHERE id=$1`;
@@ -32,7 +32,7 @@ export default class Product {
   }
 
   // Get product by category
-  async getProductsByCategory(category: string): Promise<ReturnedProduct[]> {
+  async getProductsByCategory(category: string): Promise<IProduct[]> {
     try {
       const connection = await database.connect();
       const sql = `SELECT * FROM products WHERE category=$1`;
@@ -46,7 +46,7 @@ export default class Product {
   }
 
   // Create new product
-  async createProduct(product: IProduct): Promise<ReturnedProduct> {
+  async createProduct(product: IProduct): Promise<IProduct> {
     try {
       const { name, price, category } = product;
       const sql = `INSERT INTO products (name, price, category) VALUES($1, $2, $3) RETURNING *`;
@@ -61,7 +61,7 @@ export default class Product {
   }
 
   // Delete product
-  async deleteProduct(id: number): Promise<ReturnedProduct> {
+  async deleteProduct(id: number): Promise<IProduct> {
     try {
       const sql = `DELETE FROM products WHERE id=$1 RETURNING *`;
       const connection = await database.connect();

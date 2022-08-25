@@ -11,7 +11,7 @@ router.get('/', requireAuth, controller.getUsers);
 router.get('/:id', requireAuth, controller.getUserById);
 
 // POST: create a user
-router.post('/create', requireAuth, controller.createUser);
+router.post('/create', controller.createUser);
 
 // DELETE: user by id
 router.delete('/:id', requireAuth, controller.deleteUser);

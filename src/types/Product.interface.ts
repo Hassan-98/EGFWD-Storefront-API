@@ -1,12 +1,7 @@
 export interface Product {
+  id?: number;
   name: string;
   price: string;
   category: string;
-}
-
-export interface ReturnedProduct {
-  id: number;
-  name: string;
-  price: string;
-  category: string;
+  quantity?: number;
 }

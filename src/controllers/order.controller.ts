@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import OrderModel from "../models/Order.model";
-import { Order, ReturnedOrder } from '../types/Order.interface';
+import { Order } from '../types/Order.interface';
 
 const ORDER = new OrderModel();
 
@@ -24,7 +24,7 @@ export const getCurrentUserOrder = async (req: Request, res: Response, next: Nex
 
     if (!userId) throw new Error('Invalid User Id');
 
-    const order: ReturnedOrder = await ORDER.getCurrentOrderByUserId(userId);
+    const order: Order = await ORDER.getCurrentOrderByUserId(userId);
 
     res.status(200).json(order);
   } catch (err) {
@@ -38,7 +38,7 @@ export const getActiveOrdersByUserId = async (req: Request, res: Response, next:
 
     if (!userId) throw new Error('Invalid User Id');
 
-    const orders: ReturnedOrder[] = await ORDER.getActiveOrdersByUserId(userId);
+    const orders: Order[] = await ORDER.getActiveOrdersByUserId(userId);
 
     res.status(200).json(orders);
   } catch (err) {
@@ -52,7 +52,7 @@ export const getCompletedOrdersByUserId = async (req: Request, res: Response, ne
 
     if (!userId) throw new Error('Invalid User Id');
 
-    const orders: ReturnedOrder[] = await ORDER.getCompletedOrdersByUserId(userId);
+    const orders: Order[] = await ORDER.getCompletedOrdersByUserId(userId);
 
     res.status(200).json(orders);
   } catch (err) {

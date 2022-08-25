@@ -29,8 +29,7 @@ describe('Test Orders Routes' , () => {
 
   it('test create order route "POST: /api/orders"', async () => {
     const response = await request.post('/api/orders').send({
-      product_id: 1,
-      quantity: 5,
+      products: [{ id: 1, quantity: 3 }],
       user_id: 1,
       status: 'active'
     })
@@ -39,8 +38,10 @@ describe('Test Orders Routes' , () => {
     expect(response.status).toBe(201);
     expect(response.body).toBeDefined();
     expect(response.body.id).toBe(1);
-    expect(response.body.product_id).toBe(1);
-    expect(response.body.quantity).toBe(5);
+    expect(response.body.products).toBeDefined();
+    expect(response.body.products).toHaveSize(1);
+    expect(response.body.products[0].product_id).toBe(1);
+    expect(response.body.products[0].quantity).toBe(3);
     expect(response.body.user_id).toBe(1);
     expect(response.body.status).toBe('active');
   });
@@ -104,8 +105,6 @@ describe('Test Orders Routes' , () => {
     expect(response.status).toBe(200);
     expect(response.body).toBeDefined();
     expect(response.body.id).toBe(order_id);
-    expect(response.body.product_id).toBe(1);
-    expect(response.body.quantity).toBe(5);
     expect(response.body.user_id).toBe(1);
     expect(response.body.status).toBe('complete');
   });

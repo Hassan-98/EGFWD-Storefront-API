@@ -2,7 +2,7 @@ import database from "../../configs/db.config";
 import UserModel from "../../models/User.model";
 import bcrypt from 'bcrypt';
 
-import { ReturnedUser, UserWithToken } from '../../types/User.interface';
+import { User } from '../../types/User.interface';
 
 const USER = new UserModel();
 
@@ -26,7 +26,7 @@ describe('Test User Model', () => {
   });
 
   it('test creating a new user using createUser method', async () => {
-    const user: UserWithToken = await USER.createUser({
+    const user: User = await USER.createUser({
       firstname: 'hassan',
       lastname: 'ali',
       password: 'hassanali123'
@@ -41,7 +41,7 @@ describe('Test User Model', () => {
   });
 
   it('test get all users using getUsers method', async () => {
-    const users: ReturnedUser[] = await USER.getUsers();
+    const users: User[] = await USER.getUsers();
 
     expect(users).toHaveSize(1);
     expect(users[0].id).toEqual(1);
@@ -51,7 +51,7 @@ describe('Test User Model', () => {
 
   it('test get user using getUserById method', async () => {
     const id = 1;
-    const user: ReturnedUser = await USER.getUserById(id);
+    const user: User = await USER.getUserById(id);
 
     expect(user.id).toEqual(id);
     expect(user.firstname).toEqual('hassan');
@@ -62,7 +62,7 @@ describe('Test User Model', () => {
 
   it('test delete user using deleteProduct method', async () => {
     const id = 1;
-    const user: ReturnedUser = await USER.deleteUser(id);
+    const user: User = await USER.deleteUser(id);
 
     expect(user.id).toEqual(id);
     expect(user.firstname).toBe('hassan');

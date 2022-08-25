@@ -1,6 +1,6 @@
 import database from "../../configs/db.config";
 import ProductModel from "../../models/Product.model";
-import { ReturnedProduct } from '../../types/Product.interface';
+import { Product } from '../../types/Product.interface';
 
 const PRODUCT = new ProductModel();
 
@@ -26,7 +26,7 @@ describe('Test Product Model', () => {
   });
 
   it('test create a Product using createProduct method', async () => {
-    const product: ReturnedProduct = await PRODUCT.createProduct({
+    const product: Product = await PRODUCT.createProduct({
       name: 'Lenovo Ideapad Intel Core i7 10800H',
       price: '1500',
       category: 'laptop'
@@ -41,7 +41,7 @@ describe('Test Product Model', () => {
   });
 
   it('test get products using getProducts', async () => {
-    const products: ReturnedProduct[] = await PRODUCT.getProducts();
+    const products: Product[] = await PRODUCT.getProducts();
 
     expect(products).toHaveSize(1);
     expect(products[0].id).toBe(1);
@@ -52,7 +52,7 @@ describe('Test Product Model', () => {
 
   it('test get product using getProductById', async () => {
     const id = 1;
-    const product: ReturnedProduct = await PRODUCT.getProductById(id);
+    const product: Product = await PRODUCT.getProductById(id);
     
     expect(product.id).toBe(id);
     expect(product.name).toBe('Lenovo Ideapad Intel Core i7 10800H');
@@ -61,7 +61,7 @@ describe('Test Product Model', () => {
   });
 
   it('test get product using getProductsByCategory', async () => {
-    const products: ReturnedProduct[] = await PRODUCT.getProductsByCategory('laptop');
+    const products: Product[] = await PRODUCT.getProductsByCategory('laptop');
     
     expect(products).toHaveSize(1);
     expect(products[0].id).toBe(1);
@@ -72,7 +72,7 @@ describe('Test Product Model', () => {
 
   it('test delete product using deleteProduct', async () => {
     const id = 1;
-    const product: ReturnedProduct = await PRODUCT.deleteProduct(id);
+    const product: Product = await PRODUCT.deleteProduct(id);
 
     expect(product.id).toBe(id);
     expect(product.name).toBe('Lenovo Ideapad Intel Core i7 10800H');
